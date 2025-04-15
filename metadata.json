@@ -1,0 +1,8 @@
+{
+  "name": "Stonks Reminder",
+  "creator": "Reaper_PV",
+  "description": "reminder for the stonks auction",
+  "version": "1.0.0",
+  "entry": "index.js",
+  "requires": ["requestV2"]
+}
