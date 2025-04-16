@@ -1,6 +1,11 @@
+import Settings from "./settings";
 import request from "../requestV2";
 
+register("command", () => Settings.openGUI()).setName("str").setAliases('stonksreminder', 'stonksremind', 'sr', 'stonkreminder');
+
 let diaz = false;
+const alertSound = Settings.alertSound ? Settings.alertSound : "random.anvil_land";
+const volume = Settings.volume ? Settings.volume : 5;
 
 // Flags to track if warnings have been shown
 let warningsShown = {
@@ -97,8 +102,14 @@ register("step", () => {
     } else if (currentTime > 2200 && currentTime < 2400 && !warningsShown.now) {
         warn("&3AUCTION IS ENDING NOW!!!!");
         warningsShown.now = true;
-        World.playSound("random.anvil_land", 1, 1);
-        World.playSound("random.anvil_land", 1, 1);
+
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                for (let i = 0; i < volume; i++) {
+                    World.playSound(alertSound, 1, 1);
+                }
+            }, i * 200);
+        }        
     }
 
 }).setDelay(10);
@@ -106,5 +117,5 @@ register("step", () => {
 function warn (message) {
     ChatLib.chat("&3&lSTONKS: " + message);
     Client.showTitle(message, "You stupid idiot", 0.5, 50, 0.5);
-    World.playSound("random.anvil_land", 1, 1);
+    World.playSound(alertSound, 1, 1);
 }
