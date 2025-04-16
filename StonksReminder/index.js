@@ -115,7 +115,7 @@ register("step", () => {
 }).setDelay(10);
 
 function warn (message) {
-    ChatLib.chat("&3&lSTONKS: " + message);
+    ChatLib.chat("&3&lStonks Reminder: " + message);
     Client.showTitle(message, "You stupid idiot", 0.5, 50, 0.5);
     World.playSound(alertSound, 1, 1);
 }
